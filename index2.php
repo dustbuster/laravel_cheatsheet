@@ -8,37 +8,32 @@
         <link rel="shortcut icon" href="assets/ico/favicon.png">
         <link rel="stylesheet" href="assets/css/page.css" />
         <meta name="description" content="Laravel Cheat Sheet , Codes , function , methods of laravel framework">
-        <title>Laravel Cheat Sheet</title>
+        <title>Laravel 5.3 LTS Cheat Sheet</title>
     </head>
     <body>
 
         <a href="#top" id="top-button" title="Top"><i class="icon-arrow-up"></i></a>
-        <div class="fixed">
-            <nav class="top-bar" data-topbar>
+        <div class="fixed">            
+            <nav class="top-bar" data-topbar>                
+                <div class="update-date"><span class="label">Last updated: 2016-10-14</span></div>
                 <ul class="title-area">
-                    <li class="name"><h1><a href="#">Laravel Cheat Sheet</a></h1></li>
+                    <li class="name"><h1><a href="http://laravel.com/docs/master/">Laravel 5.3 LTS Cheat Sheet</a></h1></li>
                     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
                 </ul>
                 <section class="top-bar-section">
                     <ul class="left">
-                        <li class="larajobs-text">Sponsored By</li>
-                        <li><a class="larajobs-link" href="https://larajobs.com?partner=24"><img class="larajobs-logo" src="assets/img/larajobs-logo.png"  alt="Larajobs Logo"></a></li>
+                        <li class="larajobs-text">Inspired By</li>
+                        <li><a class="larajobs-link" href="http://github.com/jesseobrien/laravel-cheatsheet">JesseObrien/laravel-cheatsheet</a></li>
                     </ul>
                     <ul class="right">
                         <li class="comments-toggle"><a href="#"><i class="icon-comments"></i> Toggle Code Comments</a></li>
-                        <li><a href="/Laravel%20Cheatsheet.pdf"><i class="icon-download"></i> PDF Version</a></li>
-                        <li><a href="http://github.com/jesseobrien/laravel-cheatsheet" target="_blank"><i class="icon-github"></i> Github</a></li>
+                        <li><a href="/Laravel-5-Cheatsheet.pdf"><i class="icon-download"></i> PDF Version</a></li>
+                        <li><a href="https://github.com/mclxly/laravel5-cheatsheet" target="_blank"><i class="icon-github"></i> Github</a></li>
                         <li class="has-dropdown">
                             <a href="#">Laravel Docs</a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="http://three.laravel.com/" target="_blank"><i class="icon-file-text"></i> Laravel 3 Docs</a>
-                                </li>
-                                <li>
-                                    <a href="http://laravel.com/docs/4.2" target="_blank"><i class="icon-file-text"></i> Laravel 4 Docs</a>
-                                </li>
-                                <li>
-                                    <a href="http://laravel.com/docs/5.0" target="_blank"><i class="icon-file-text"></i> Laravel 5 Docs</a>
+                                    <a href="http://laravel.com/docs" target="_blank"><i class="icon-file-text"></i> Laravel 5 Docs</a>
                                 </li>
                             </ul>
                         </li>
@@ -62,13 +57,24 @@
                 <small id="searchHint">hint: keep tapping the search, it scrolls to the result</small>
             </div>
         </div>
+        
+        <!--
+        <div class="row full-width">
+            <div class="columns code-column">
+                <pre class="prettyprint lang-php">
+                
+                </pre>
+            </div>
+        </div>-->
 
         <div class="row full-width">
             <div class="large-4 columns code-column">
 
 
-                <h4><a name="artisan" href="#artisan">Artisan</a> <a href="http://laravel.com/docs/artisan" title="Artisan CLI @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a class="l5update" name="artisan" href="#artisan">Artisan</a> <a href="http://laravel.com/docs/artisan" title="Artisan CLI @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">
+// Generating Policies               
+php artisan make:policy PostPolicy                
 // Displays help for a given command
 php artisan --help OR -h
 // Do not output any message
@@ -87,80 +93,184 @@ php artisan --env
 php artisan --verbose
 
 // Display the framework change list
-php artisan changes
+?
 // Remove the compiled class file
 php artisan clear-compiled
-// Put the application into maintenance mode
-php artisan down
-// Regenerate framework autoload files
-php artisan dump-autoload
 // Display the current framework environment
 php artisan env
 // Displays help for a command
 php artisan help
 // Lists commands
 php artisan list
-
+// Interact with your application
+php artisan tinker
+// Put the application into maintenance mode
+php artisan down
+// Bring the application out of maintenance mode
+php artisan up
+// Regenerate framework autoload files
+?
 // Optimize the framework for better performance
-php artisan optimize
-// List all registered routes
-php artisan routes
+// --force    Force the compiled class file to be written.
+// --psr      Do not optimize Composer dump-autoload.
+php artisan optimize [--force] [--psr]
 // Serve the application on the PHP development server
 php artisan serve
 // Change the default port
 php artisan serve --port 8080
 // Get it to work outside localhost
 php artisan serve --host 0.0.0.0
-// Interact with your application
-php artisan tinker
-// Bring the application out of maintenance mode
-php artisan up
 // Create a new package workbench
-php artisan workbench
+?
 
-// Publish a package's assets to the public directory
-php artisan asset:publish [--bench[="vendor/package"]] [--path[="..."]] [package]
-// Create a migration for the password reminders table
-php artisan auth:reminders-table
+// Set the application namespace
+php artisan app:name namespace
+
+// Flush expired password reset tokens
+php artisan auth:clear-resets
+
 // Flush the application cache
 php artisan cache:clear
-// Create a new Artisan command (L3:task)
-php artisan command:make name [--command[="..."]] [--path[="..."]] [--namespace[="..."]]
-// Publish a package's configuration to the application
-php artisan config:publish
-// Create a new resourceful controller
-php artisan controller:make [--bench="vendor/package"]
+// Create a migration for the cache database table
+php artisan cache:table
+
+// Create a cache file for faster configuration loading
+php artisan config:cache
+// In program
+$exitCode = Artisan::call('config:cache');
+// Remove the configuration cache file
+php artisan config:clear
+
 // Seed the database with records
-php artisan db:seed [--class[="..."]] [--database[="..."]]
+// --class      The class name of the root seeder (default: "DatabaseSeeder")
+// --database   The database connection to seed
+// --force      Force the operation to run when in production.
+php artisan db:seed [--class[="..."]] [--database[="..."]] [--force]
+
+// Generate the missing events and handlers based on registration
+php artisan event:generate
+
+// Create a new command handler class
+// --command      The command class the handler handles.
+php artisan handler:command [--command="..."] name
+// Create a new event handler class
+// --event        The event class the handler handles.
+// --queued       Indicates the event handler should be queued.
+php artisan handler:event [--event="..."] [--queued] name
+
 // Set the application key
 php artisan key:generate
 
+// By default, this creates a self-handling command that isn't pushed to the queue.
+// Pass this the --handler flag to generate a handler, and the --queued flag to make it queued.
+php artisan make:command [--handler] [--queued] name
+// Create a new Artisan command
+//  --command     The terminal command that should be assigned. (default: "command:name")
+make:console [--command[="..."]] name
+// Create a new resourceful controller
+// --plain      Generate an empty controller class.
+php artisan make:controller [--plain] name
+php artisan make:controller App\\Admin\\Http\\Controllers\\DashboardController
+// Create a new event class
+php artisan make:event name
+// Create a new middleware class
+php artisan make:middleware name
+// Create a new migration file
+// --create     The table to be created.
+// --table      The table to migrate.
+php artisan make:migration [--create[="..."]] [--table[="..."]] name
+// Create a new Eloquent model class
+php artisan make:model name
+// Create a new service provider class
+php artisan make:provider name
+// Create a new form request class
+php artisan make:request name
+
 // Database migrations
-php artisan migrate [--bench="vendor/package"] [--database[="..."]] [--path[="..."]] [--package[="..."]] [--pretend] [--seed]
+// --database   The database connection to use.
+// --force      Force the operation to run when in production.
+// --path       The path of migrations files to be executed.
+// --pretend    Dump the SQL queries that would be run.
+// --seed       Indicates if the seed task should be re-run.
+php artisan migrate [--database[="..."]] [--force] [--path[="..."]] [--pretend] [--seed]
 // Create the migration repository
 php artisan migrate:install [--database[="..."]]
 // Create a new migration file
-php artisan migrate:make name [--bench="vendor/package"] [--create] [--package[="..."]] [--path[="..."]] [--table[="..."]]
+// --create     The table to be created.
+// --table      The table to migrate.
+php artisan make:migration [--create[="..."]] [--table[="..."]] name
 // Reset and re-run all migrations
-php artisan migrate:refresh [--database[="..."]] [--seed]
+// --seed       Indicates if the seed task should be re-run.
+// --seeder     The class name of the root seeder.
+php artisan migrate:refresh [--database[="..."]] [--force] [--seed] [--seeder[="..."]]
 // Rollback all database migrations
-php artisan migrate:reset [--database[="..."]] [--pretend]
+// --pretend    Dump the SQL queries that would be run.
+php artisan migrate:reset [--database[="..."]] [--force] [--pretend]
 // Rollback the last database migration
-php artisan migrate:rollback [--database[="..."]] [--pretend]
-// Publish a package's migrations to migration directory
-php artisan migrate:publish vendor/package
+php artisan migrate:rollback [--database[="..."]] [--force] [--pretend]
+// Show a list of migrations up/down
+php artisan migrate:status
 
+// Create a migration for the queue jobs database table
+php artisan queue:table
 // Listen to a given queue
-php artisan queue:listen [--queue[="..."]] [--delay[="..."]] [--memory[="..."]] [--timeout[="..."]] [connection]
+// --queue      The queue to listen on
+// --delay      Amount of time to delay failed jobs (default: 0)
+// --memory     The memory limit in megabytes (default: 128)
+// --timeout    Seconds a job may run before timing out (default: 60)
+// --sleep      Seconds to wait before checking queue for jobs (default: 3)
+// --tries      Number of times to attempt a job before logging it failed (default: 0)
+php artisan queue:listen [--queue[="..."]] [--delay[="..."]] [--memory[="..."]] [--timeout[="..."]] [--sleep[="..."]] [--tries[="..."]] [connection]
+// List all of the failed queue jobs
+php artisan queue:failed
+// Create a migration for the failed queue jobs database table
+php artisan queue:failed-table
+// Flush all of the failed queue jobs
+php artisan queue:flush
+// Delete a failed queue job
+php artisan queue:forget
+// Restart queue worker daemons after their current job
+php artisan queue:restart
+// Retry a failed queue job(id: The ID of the failed job)
+php artisan queue:retry id
 // Subscribe a URL to an Iron.io push queue
+// queue: The name of Iron.io queue.
+// url: The URL to be subscribed.
+// --type       The push type for the queue.
 php artisan queue:subscribe [--type[="..."]] queue url
 // Process the next job on a queue
-php artisan queue:work [--queue[="..."]] [--delay[="..."]] [--memory[="..."]] [--sleep] [connection]
-// Create a migration for the session database table
+// --queue      The queue to listen on
+// --daemon     Run the worker in daemon mode
+// --delay      Amount of time to delay failed jobs (default: 0)
+// --force      Force the worker to run even in maintenance mode
+// --memory     The memory limit in megabytes (default: 128)
+// --sleep      Number of seconds to sleep when no job is available (default: 3)
+// --tries      Number of times to attempt a job before logging it failed (default: 0)
+php artisan queue:work [--queue[="..."]] [--daemon] [--delay[="..."]] [--force] [--memory[="..."]] [--sleep[="..."]] [--tries[="..."]] [connection]
 
+// Closure based routes cannot be cached. To use route caching, you must convert any Closure routes to controller classes.
+// Create a route cache file for faster route registration[For production]
+php artisan route:cache
+// Remove the route cache file
+php artisan route:clear
+// List all registered routes
+php artisan route:list
+
+// Run the scheduled commands
+php artisan schedule:run
+
+// Create a migration for the session database table
 php artisan session:table
-// Publish a package's views to the application
-php artisan view:publish [--path[="..."]] package
+
+// Publish any publishable assets from vendor packages
+// --force        Overwrite any existing files.
+// --provider     The service provider that has assets you want to publish.
+// --tag          The tag that has assets you want to publish.
+php artisan vendor:publish [--force] [--provider[="..."]] [--tag[="..."]]
+
+// Create a migration for the password reminders table
+?
+
 php artisan tail [--path[="..."]] [--lines[="..."]] [connection]
                 </pre>
 
@@ -183,26 +293,26 @@ Config::set('database.default', 'sqlite');
 
 
 
-                <h4><a name="routing" href="#routing">Routing</a> <a href="http://laravel.com/docs/routing" title="Routing @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="routing" href="#routing">Routing</a> <a href="http://laravel.com/docs/routing" title="Routing @ Laravel Docs"><i class="icon-file-text"></i></a> <a href="http://laravel.com/docs/helpers#routing" title="Routing Helpers @ Laravel Docs"><i class="icon-file-text"></i></a> </h4>
                 <pre class="prettyprint lang-php">Route::get('foo', function(){});
 Route::get('foo', 'ControllerName@function');
 Route::controller('foo', 'FooController');
                 </pre>
 
-                <h6>RESTful Controllers</h6>
+                <h6>RESTful Controllers <a href="http://laravel.com/docs/controllers#restful-resource-controllers" title="RESTful Controllers @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
                 <pre class="prettyprint lang-php">Route::resource('posts','PostsController');
 //Specify a subset of actions to handle on the route
 Route::resource('photo', 'PhotoController',['only' => ['index', 'show']]);
 Route::resource('photo', 'PhotoController',['except' => ['update', 'destroy']]);
                 </pre>
 
-                <h6>Triggering Errors</h6>
+                <h6>Triggering Errors <a href="http://laravel.com/docs/routing#throwing-404-errors" title="throwing-404-errors @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
                 <pre class="prettyprint lang-php">App::abort(404);
-App::missing(function($exception){});
+$handler->missing(...) in ErrorServiceProvider::boot();
 throw new NotFoundHttpException;
                 </pre>
 
-                <h6>Route Parameters</h6>
+                <h6>Route Parameters <a href="http://laravel.com/docs/routing#route-parameters" title="RESTful Controllers @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
                 <pre class="prettyprint lang-php">Route::get('foo/{bar}', function($bar){});
 Route::get('foo/{bar?}', function($bar = 'bar'){});
                 </pre>
@@ -215,43 +325,51 @@ Route::patch('foo', function(){});
 Route::delete('foo', function(){});
 // RESTful actions
 Route::resource('foo', 'FooController');
+// Registering A Route For Multiple Verbs
+Route::match(['get', 'post'], '/', function(){});
                 </pre>
 
-                <h6>Secure Routes</h6>
+                <h6>Secure Routes(TBD)</h6>
                 <pre class="prettyprint lang-php">Route::get('foo', array('https', function(){}));</pre>
 
                 <h6>Route Constraints</h6>
                 <pre class="prettyprint lang-php">Route::get('foo/{bar}', function($bar){})
-	->where('bar', '[0-9]+');
+    ->where('bar', '[0-9]+');
 Route::get('foo/{bar}/{baz}', function($bar, $baz){})
-	->where(array('bar' => '[0-9]+', 'baz' => '[A-Za-z]'))
+    ->where(array('bar' => '[0-9]+', 'baz' => '[A-Za-z]'))
                 </pre>
                 <pre class="prettyprint lang-php">// Set a pattern to be used across routes
-			Route::pattern('bar', '[0-9]+')
+            Route::pattern('bar', '[0-9]+')
                 </pre>
-                <h6>Filters</h6>
-                <pre class="prettyprint lang-php">// Declare an auth filter
-Route::filter('auth', function(){});
-// Register a class as a filter
-Route::filter('foo', 'FooFilter');
-Route::get('foo', array('before' => 'auth', function(){}));
-// Routes in this group are guarded by the 'auth' filter
-Route::get('foo', array('before' => 'auth', function(){}));
-Route::group(array('before' => 'auth'), function(){});
-// Pattern filter
-Route::when('foo/*', 'foo');
-// HTTP verb pattern
-Route::when('foo/*', 'foo', array('post'));
+
+                <h6>HTTP Middleware <a href="http://laravel.com/docs/middleware" title="HTTP Middleware @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+// Assigning Middleware To Routes
+Route::get('admin/profile', ['middleware' => 'auth', function(){}]);
                 </pre>
 
                 <h6>Named Routes</h6>
-                <pre class="prettyprint lang-php">Route::currentRouteName();
+                <pre class="prettyprint lang-php">
+$route = Route::current();
+$name = Route::currentRouteName();
+$action = Route::currentRouteAction();
+
 Route::get('foo/bar', array('as' => 'foobar', function(){}));
+Route::get('user/profile', [
+    'as' => 'profile', 'uses' => 'UserController@showProfile'
+]);
+$url = route('profile');
+$redirect = redirect()->route('profile');
                 </pre>
 
                 <h6>Route Prefixing</h6>
-                <pre class="prettyprint lang-php">// This route group will carry the prefix 'foo'
-Route::group(array('prefix' => 'foo'), function(){})
+                <pre class="prettyprint lang-php">
+Route::group(['prefix' => 'admin'], function()
+{
+    Route::get('users', function(){
+        return 'Matches The "/admin/users" URL';
+    });
+});
                 </pre>
 
                 <h6>Route Namespacing</h6>
@@ -263,17 +381,21 @@ Route::group(array('namespace' => 'Foo\Bar'), function(){})
 Route::group(array('domain' => '{sub}.example.com'), function(){});
                 </pre>
 
-                <h4><a name="app" href="#app">App</a> <a href="http://laravel.com/docs/helpers#app" title="App @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="app" href="#app">Environment Configuration</a> <a href="http://laravel.com/docs/configuration#environment-configuration" title="Environment Configuration @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">
-App::environment();
-// test equal to
-App::environment('local');
-App::runningInConsole();
-App::runningUnitTests();
+$environment = app()->environment();
+$environment = App::environment();
+$environment = $app->environment();
+// The environment is local
+if ($app->environment('local')){}
+// The environment is either local OR staging...
+if ($app->environment('local', 'staging')){}
                 </pre>
 
-                <h4><a name="log" href="#log">Log</a> <a href="http://laravel.com/docs/helpers#log" title="Log @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="log" href="#log">Log</a> <a href="http://laravel.com/docs/errors#logging" title="Log @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">
+// The logger provides the seven logging levels defined in RFC 5424:
+// debug, info, notice, warning, error, critical, and alert.
 Log::info('info');
 Log::info('info',array('context'=>'additional info'));
 Log::error('error');
@@ -282,15 +404,24 @@ Log::warning('warning');
 Log::getMonolog();
 // add listener
 Log::listen(function($level, $message, $context) {});
-// get all ran queries.
+                </pre>
+
+                <h6>Query Logging <a href="http://laravel.com/docs/database#query-logging" title="Log @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+// enable the log
+DB::connection()->enableQueryLog();
+// get an array of the executed queries
 DB::getQueryLog();
                 </pre>
 
-                <h4><a name="urls" href="#urls">URLs</a> <a href="http://laravel.com/docs/helpers#urls" title="URLs @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="urls" href="#urls">UrlGenerator</a> <a href="http://laravel.com/api/5.0/Illuminate/Routing/UrlGenerator.html" title="UrlGenerator @ Laravel Docs"><i class="icon-file-text"></i></a>&nbsp;<a href="http://laravel.com/docs/helpers#urls" title="URL helper @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">URL::full();
 URL::current();
 URL::previous();
 URL::to('foo/bar', $parameters, $secure);
+URL::action('NewsController@item', ['id'=>123]);
+// need be in appropriate namespace
+URL::action('Auth\AuthController@logout');
 URL::action('FooController@method', $parameters, $absolute);
 URL::route('foo', $parameters, $absolute);
 URL::secure('foo/bar', $parameters);
@@ -299,98 +430,156 @@ URL::secureAsset('css/foo.css');
 URL::isValidUrl('http://example.com');
 URL::getRequest();
 URL::setRequest($request);
-URL::getGenerator();
-URL::setGenerator($generator);
                 </pre>
 
 
                 <h4><a name="events" href="#events">Events</a> <a href="http://laravel.com/docs/events" title="Events @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">Event::fire('foo.bar', array($bar));
-Event::listen('foo.bar', function($bar){});
+// Register an event listener with the dispatcher.
+// void listen(string|array $events, mixed $listener, int $priority)
+Event::listen('App\Events\UserSignup', function($bar){});
 Event::listen('foo.*', function($bar){});
 Event::listen('foo.bar', 'FooHandler', 10);
 Event::listen('foo.bar', 'BarHandler', 5);
+// Stopping The Propagation Of An Event
+// You may do so using by returning false from your handler.
 Event::listen('foor.bar', function($event){ return false; });
-Event::queue('foo', array($bar));
-Event::flusher('foo', function($bar){});
-Event::flush('foo');
-Event::forget('foo');
-Event::subscribe(new FooEventHandler);
+Event::subscribe('UserEventHandler');
                 </pre>
 
-                <h4><a name="db" href="#db">Database</a> <a href="http://laravel.com/docs/queries" title="Query Builder @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="db" href="#db">Database</a> <a href="http://laravel.com/docs/5.0/database" title="Basic Database Usage @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+
+                <h6>Basic Database Usage</h6>
                 <pre class="prettyprint lang-php">
 DB::connection('connection_name');
+// Running A Select Query
+$results = DB::select('select * from users where id = ?', [1]);
+$results = DB::select('select * from users where id = :id', ['id' => 1]);
+// Running A General Statement
 DB::statement('drop table users');
+// Listening For Query Events
 DB::listen(function($sql, $bindings, $time){ code_here; });
-DB::transaction(function(){ transaction_code_here; });
-// Cache a query for $time minutes
-DB::table('users')->remember($time)->get();
-// Escape raw input
-DB::raw('sql expression here');
+// Database Transactions
+DB::transaction(function()
+{
+    DB::table('users')->update(['votes' => 1]);
+    DB::table('posts')->delete();
+});
+DB::beginTransaction();
+DB::rollback();
+DB::commit();
                 </pre>
 
-                <h6>Selects</h6>
-                <pre class="prettyprint lang-php">DB::table('name')->get();
-DB::table('name')->distinct()->get();
-DB::table('name')->select('column as column_alias')->get();
-DB::table('name')->where('name', '=', 'John')->get();
-DB::table('name')->whereBetween('column', array(1, 100))->get();
-DB::table('name')->orWhereBetween('column', array(200, 300))->get();
-DB::table('name')->whereIn('column', array(1, 2, 3))->get();
-DB::table('name')->whereNotIn('column', array(1, 2, 3))->get();
-DB::table('name')->whereNull('column')->get();
-DB::table('name')->whereNotNull('column')->get();
-DB::table('name')->groupBy('column')->get();
-// Default Eloquent sort is ascendant
+                <h6>Query Builder <a href="http://laravel.com/docs/5.0/queries" title="Query Builder @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+// Retrieving All Rows From A Table
+DB::table('name')->get();
+// Chunking Results From A Table
+DB::table('users')->chunk(100, function($users)
+{
+    foreach ($users as $user)
+    {
+        //
+    }
+});
+// Retrieving A Single Row From A Table
+$user = DB::table('users')->where('name', 'John')->first();
+DB::table('name')->first();
+// Retrieving A Single Column From A Row
+$name = DB::table('users')->where('name', 'John')->pluck('name');
+DB::table('name')->pluck('column');
+// Retrieving A List Of Column Values
+$roles = DB::table('roles')->lists('title');
+$roles = DB::table('roles')->lists('title', 'name');
+// Specifying A Select Clause
+$users = DB::table('users')->select('name', 'email')->get();
+$users = DB::table('users')->distinct()->get();
+$users = DB::table('users')->select('name as user_name')->get();
+// Adding A Select Clause To An Existing Query
+$query = DB::table('users')->select('name');
+$users = $query->addSelect('age')->get();
+// Using Where Operators
+$users = DB::table('users')->where('votes', '>', 100)->get();
+$users = DB::table('users')
+                    ->where('votes', '>', 100)
+                    ->orWhere('name', 'John')
+                    ->get();
+$users = DB::table('users')
+                    ->whereBetween('votes', [1, 100])->get();
+$users = DB::table('users')
+                    ->whereNotBetween('votes', [1, 100])->get();
+$users = DB::table('users')
+                    ->whereIn('id', [1, 2, 3])->get();
+$users = DB::table('users')
+                    ->whereNotIn('id', [1, 2, 3])->get();
+$users = DB::table('users')
+                    ->whereNull('updated_at')->get();
+DB::table('name')->whereNotNull('column')->get();                    
+// Dynamic Where Clauses
+$admin = DB::table('users')->whereId(1)->first();
+$john = DB::table('users')
+                    ->whereIdAndEmail(2, 'john@doe.com')
+                    ->first();
+$jane = DB::table('users')
+                    ->whereNameOrAge('Jane', 22)
+                    ->first();
+// Order By, Group By, And Having
+$users = DB::table('users')
+                    ->orderBy('name', 'desc')
+                    ->groupBy('count')
+                    ->having('count', '>', 100)
+                    ->get();
 DB::table('name')->orderBy('column')->get();
 DB::table('name')->orderBy('column','desc')->get();
-DB::table('name')->having('count', '>', 100)->get();
-DB::table('name')->skip(10)->take(5)->get();
-DB::table('name')->first();
-DB::table('name')->pluck('column');
-DB::table('name')->lists('column');
-// Joins
-DB::table('name')->join('table', 'name.id', '=', 'table.id')
-    ->select('name.id', 'table.email');
-                </pre>
+DB::table('name')->having('count', '>', 100)->get();                    
+// Offset & Limit                    
+$users = DB::table('users')->skip(10)->take(5)->get();     
+            </pre>
 
-                <h6>Inserts, Updates, Deletes</h6>
-                <pre class="prettyprint lang-php">DB::table('name')->insert(array('name' => 'John', 'email' => 'john@example.com'));
-DB::table('name')->insertGetId(array('name' => 'John', 'email' => 'john@example.com'));
-// Batch insert
-DB::table('name')->insert(array(
-	array('name' => 'John', 'email' => 'john@example.com'),
-	array('name' => 'James', 'email' => 'james@example.com')
-));
-// Update an entry
-DB::table('name')->where('name', '=', 'John')
-	->update(array('email' => 'john@example2.com'));
-// Delete everything from a table
-DB::table('name')->delete();
-// Delete specific records
-DB::table('name')->where('id', '>', '10')->delete();
-DB::table('name')->truncate();
-                </pre>
+            <h6>Joins <a href="http://laravel.com/docs/5.0/queries#joins" title="Joins @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+            <pre class="prettyprint lang-php">
+// Basic Join Statement
+DB::table('users')
+            ->join('contacts', 'users.id', '=', 'contacts.user_id')
+            ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('users.id', 'contacts.phone', 'orders.price')
+            ->get();
+// Left Join Statement
+DB::table('users')
+        ->leftJoin('posts', 'users.id', '=', 'posts.user_id')
+        ->get();
+// select * from users where name = 'John' or (votes > 100 and title <> 'Admin')
+DB::table('users')
+            ->where('name', '=', 'John')
+            ->orWhere(function($query)
+            {
+                $query->where('votes', '>', 100)
+                      ->where('title', '<>', 'Admin');
+            })
+            ->get();
+            </pre>
 
-                <h6>Aggregates</h6>
-                <pre class="prettyprint lang-php">DB::table('name')->count();
-DB::table('name')->max('column');
-DB::table('name')->min('column');
-DB::table('name')->avg('column');
-DB::table('name')->sum('column');
-DB::table('name')->increment('column');
-DB::table('name')->increment('column', $amount);
-DB::table('name')->decrement('column');
-DB::table('name')->decrement('column', $amount);
+            <h6>Aggregates <a href="http://laravel.com/docs/5.0/queries#aggregates" title="Aggregates @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+            <pre class="prettyprint lang-php">
+$users = DB::table('users')->count();
+$price = DB::table('orders')->max('price');
+$price = DB::table('orders')->min('price');
+$price = DB::table('orders')->avg('price');
+$total = DB::table('users')->sum('votes');
+
 DB::table('name')->remember(5)->get();
 DB::table('name')->remember(5, 'cache-key-name')->get();
 DB::table('name')->cacheTags('my-key')->remember(5)->get();
 DB::table('name')->cacheTags(array('my-first-key','my-second-key'))->remember(5)->get();
-                </pre>
+            </pre>
 
-                <h6>Raw Expressions</h6>
-                <pre class="prettyprint lang-php">
+            <h6>Raw Expressions <a href="http://laravel.com/docs/5.0/queries#raw-expressions" title="Raw Expressions @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+            <pre class="prettyprint lang-php">
+$users = DB::table('users')
+                     ->select(DB::raw('count(*) as user_count, status'))
+                     ->where('status', '<>', 1)
+                     ->groupBy('status')
+                     ->get();
 // return rows
 DB::select('select * from users where id = ?', array('value'));
 // return nr affected rows
@@ -401,10 +590,58 @@ DB::delete('delete from bar');
 DB::statement('update foo set bar=2');
 // raw expression inside a statement
 DB::table('name')->select(DB::raw('count(*) as count, column2'))->get();
+            </pre>
+
+            <h6>Inserts / Updates / Deletes / Unions / Pessimistic Locking</h6>
+            <pre class="prettyprint lang-php">       
+// Inserts            
+DB::table('users')->insert(
+    ['email' => 'john@example.com', 'votes' => 0]
+);
+$id = DB::table('users')->insertGetId(
+    ['email' => 'john@example.com', 'votes' => 0]
+);
+DB::table('users')->insert([
+    ['email' => 'taylor@example.com', 'votes' => 0],
+    ['email' => 'dayle@example.com', 'votes' => 0]
+]);
+// Updates
+DB::table('users')
+            ->where('id', 1)
+            ->update(['votes' => 1]);            
+DB::table('users')->increment('votes');
+DB::table('users')->increment('votes', 5);
+DB::table('users')->decrement('votes');
+DB::table('users')->decrement('votes', 5);
+DB::table('users')->increment('votes', 1, ['name' => 'John']);
+// Deletes
+DB::table('users')->where('votes', '<', 100)->delete();
+DB::table('users')->delete();
+DB::table('users')->truncate();
+// Unions
+// The unionAll() method is also available, and has the same method signature as union.
+$first = DB::table('users')->whereNull('first_name');
+$users = DB::table('users')->whereNull('last_name')->union($first)->get();
+// Pessimistic Locking
+DB::table('users')->where('votes', '>', 100)->sharedLock()->get();
+DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
                 </pre>
 
-                <h4><a name="eloquent" href="#eloquent">Eloquent</a> <a href="http://laravel.com/docs/eloquent" title="Eloquent @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
-                <pre class="prettyprint lang-php">Model::create(array('key' => 'value'));
+        <h4><a name="eloquent" href="#eloquent">Eloquent ORM</a> <a href="http://laravel.com/docs/eloquent" title="Eloquent @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+            <h6>Basic Usage <a href="http://laravel.com/docs/5.0/eloquent#basic-usage" title="Basic Usage @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+            <pre class="prettyprint lang-php">
+// Defining An Eloquent Model
+class User extends Model {}
+// generate Eloquent models
+php artisan make:model User
+// specify a custom table name
+class User extends Model {
+    protected $table = 'my_users';
+}
+            </pre>
+
+            <h6>More</h6>
+            <pre class="prettyprint lang-php">Model::create(array('key' => 'value'));
 // Find first matching record by attributes or create
 Model::firstOrCreate(array('key' => 'value'));
 // Find first record by attributes or instantiate
@@ -424,9 +661,6 @@ Model::findOrFail(1);
 Model::findOrFail(array('first', 'last'));
 Model::where('foo', '=', 'bar')->get();
 Model::where('foo', '=', 'bar')->first();
-// Find using relations
-Model::whereHas('relation')->get();
-Model::with('relation')->where('relation.foo', 'bar')->get();
 // dynamic
 Model::whereFoo('bar')->first();
 // Throw an exception if the lookup fails
@@ -445,12 +679,13 @@ Model::with('relation')->get();
 Model::all()->take(10);
 Model::all()->skip(10);
 // Default Eloquent sort is ascendant
-Model::orderBy('column')->get();
-Model::orderBy('column','desc')->get();
+Model::all()->orderBy('column');
+Model::all()->orderBy('column','desc');
                 </pre>
 
-                <h6>Soft Delete</h6>
-                <pre class="prettyprint lang-php">Model::withTrashed()->where('cars', 2)->get();
+                <h6>Soft Delete <a href="http://laravel.com/docs/5.0/eloquent#soft-deleting" title="Soft Deleting @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
+                <pre class="prettyprint lang-php">
+Model::withTrashed()->where('cars', 2)->get();
 // Include the soft deleted models in the results
 Model::withTrashed()->where('cars', 2)->restore();
 Model::where('cars', 2)->forceDelete();
@@ -585,8 +820,6 @@ $table->timestamps();
 $table->nullableTimestamps();
 
 // Others
-$table->json('options');
-$table->jsonb('options');
 $table->binary('data');
 $table->boolean('confirmed');
 // Adds deleted_at column for soft deletes
@@ -713,7 +946,7 @@ Session::reflash();
 Session::keep(array('key1', 'key2'));
                 </pre>
 
-                <h4><a name="requests" href="#requests">Requests</a> <a href="http://laravel.com/docs/requests#request-information" title="Requests @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="requests" href="#requests">Requests</a> <a href="http://laravel.com/docs/requests" title="Requests @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">
 // url: http://xx.com/aa/bb
 Request::url();
@@ -761,7 +994,7 @@ Request::wantsJson();
 return Response::make($contents, 200);
 return Response::json(array('key' => 'value'));
 return Response::json(array('key' => 'value'))
-	->setCallback(Input::get('callback'));
+    ->setCallback(Input::get('callback'));
 return Response::download($filepath);
 return Response::download($filepath, $filename, $headers);
 // Create a response and modify a header value
@@ -770,7 +1003,7 @@ $response->header('Content-Type', 'application/json');
 return $response;
 // Attach a cookie to a response
 return Response::make($content)
-	->withCookie(Cookie::make('key', 'value'));
+    ->withCookie(Cookie::make('key', 'value'));
                 </pre>
 
                 <h4><a name="redirects" href="#redirects">Redirects</a> <a href="http://laravel.com/docs/responses#redirects" title="Redirects @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
@@ -793,7 +1026,7 @@ return Redirect::action('FooController@baz', array('key' => 'value'));
 return Redirect::intended('foo/bar');
                 </pre>
 
-                <h4><a name="ioc" href="#ioc">IoC</a> <a href="http://laravel.com/docs/ioc" title="IoC Container @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="service-container" href="#service-container">Service Container</a> <a href="http://laravel.com/docs/container" title="Service Container @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">App::bind('foo', function($app){ return new Foo; });
 App::make('foo');
 // If this class exists, it's returned
@@ -810,13 +1043,13 @@ App::register('FooServiceProvider');
 App::resolving(function($object){});
                 </pre>
 
-                <h4><a name="security" href="#security">Security</a> <a href="http://laravel.com/docs/security" title="Security @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
-                <h6>Passwords</h6>
+                <h4><a name="security" href="#security">Security</a></h4>
+                <h6>Hashing <a href="http://laravel.com/docs/hashing" title="Hashing @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
                 <pre class="prettyprint lang-php">Hash::make('secretpassword');
 Hash::check('secretpassword', $hashedPassword);
 Hash::needsRehash($hashedPassword);
                 </pre>
-                <h6>Auth</h6>
+                <h6>Authentication <a href="http://laravel.com/docs/authentication" title="Authentication @ Laravel Docs"><i class="icon-file-text"></i></a></h6>
                 <pre class="prettyprint lang-php">// Determine if the current user is authenticated
 Auth::check();
 // Get the currently authenticated user
@@ -909,14 +1142,14 @@ php artisan queue:flush
 
                 <h4><a name="validation" href="#validation">Validation</a> <a href="http://laravel.com/docs/validation" title="Validation @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">Validator::make(
-	array('key' => 'Foo'),
-	array('key' => 'required|in:Foo')
+    array('key' => 'Foo'),
+    array('key' => 'required|in:Foo')
 );
 Validator::extend('foo', function($attribute, $value, $params){});
 Validator::extend('foo', 'FooValidator@validate');
 Validator::resolver(function($translator, $data, $rules, $msgs)
 {
-	return new FooValidator($translator, $data, $rules, $msgs);
+    return new FooValidator($translator, $data, $rules, $msgs);
 });
                 </pre>
 
@@ -943,6 +1176,7 @@ image
 in:foo,bar,...
 not_in:foo,bar,...
 integer
+nullable
 numeric
 ip
 max:value
@@ -955,7 +1189,6 @@ required_with:foo,bar,...
 required_with_all:foo,bar,...
 required_without:foo,bar,...
 required_without_all:foo,bar,...
-sometimes|required|field
 same:field
 size:value
 timezone
@@ -966,7 +1199,7 @@ url
 
             </div>
             <div class="large-4 columnsi code-column">
-                <h4><a name="views" href="#views">Views</a> <a href="http://laravel.com/docs/responses#views" title="Views @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="views" href="#views">Views</a> <a href="http://laravel.com/docs/views" title="Views @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">View::make('path/to/view');
 View::make('foo/bar')->with('key', 'value');
 View::make('foo/bar')->withKey('value');
@@ -985,7 +1218,7 @@ View::composer('viewname', 'FooComposer');
 View::creator('viewname', function($view){});
                 </pre>
 
-                <h4><a name="blade" href="#blade">Blade Templates</a> <a href="http://laravel.com/docs/blade" title="Blade Templating @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="blade" href="#blade">Blade Templates</a> <a href="http://laravel.com/docs/templates#blade-templating" title="Blade Templating @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">@extends('layout.name')
 // Begin a section
 @section('name')
@@ -1000,15 +1233,15 @@ View::creator('viewname', function($view){});
 @include('view.name', array('key' => 'value'));
 @lang('messages.name')
 @choice('messages.name', 1);
-@if ( $foo == $bar )
+@if
 @else
 @elseif
 @endif
 @unless
 @endunless
-@for ( $i = 0 ; $i < 100 ; $i++ )
+@for
 @endfor
-@foreach ( $vars as $var )
+@foreach
 @endforeach
 @while
 @endwhile
@@ -1020,16 +1253,16 @@ View::creator('viewname', function($view){});
 {{ $var }}
 // Echo escaped content
 {{{ $var }}}
+// Echo unescaped content; 5.0 feature
+{!! $var !!}
 {{-- Blade Comment --}}
 // Echoing Data After Checking For Existence
 {{{ $name or 'Default' }}}
-// Echo HTML content
-{!! $html or '<strong>Foo</strong>' !!}
 // Displaying Raw Text With Curly Braces
 @{{ This will not be processed by Blade }}
                 </pre>
 
-                <h4><a name="forms" href="#forms">Forms</a> <a href="http://laravel.com/docs/html" title="Forms & HTML @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="forms" href="#forms">Forms</a> <a href="https://github.com/illuminate/html/" title="Forms & HTML @ GitHub"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">Form::open(array('url' => 'foo/bar', 'method' => 'PUT'));
 Form::open(array('route' => 'foo.bar'));
 Form::open(array('route' => array('foo.bar', $parameter)));
@@ -1037,6 +1270,7 @@ Form::open(array('action' => 'FooController@method'));
 Form::open(array('action' => array('FooController@method', $parameter)));
 Form::open(array('url' => 'foo/bar', 'files' => true));
 Form::close();
+{{ method_field('PUT') }}
 Form::token();
 Form::model($foo, array('route' => array('foo.bar', $foo->bar)));
 
@@ -1052,6 +1286,7 @@ Form::textarea('name');
 Form::textarea('name', $value);
 Form::textarea('name', $value, array('class' => 'name'));
 Form::hidden('foo', $value);
+Form::number('name', 'value');
 Form::password('password');
 Form::password('password', array('placeholder' => 'Password'));
 Form::email('name', $value, array());
@@ -1067,11 +1302,13 @@ Form::select('name', array('key' => 'value'), 'key', array('class' => 'name'));
 Form::selectRange('range', 1, 10);
 Form::selectYear('year', 2011, 2015);
 Form::selectMonth('month');
+// be sure Carbon is installed http://carbon.nesbot.com/#gettingstarted
+Form::date('name', \Carbon\Carbon::now());
 Form::submit('Submit!', array('class' => 'name'));
 Form::button('name', array('class' => 'name'));
 Form::macro('fooField', function()
 {
-	return '&lt;input type="custom"/&gt;';
+    return '&lt;input type="custom"/&gt;';
 });
 Form::fooField();
                 </pre>
@@ -1161,7 +1398,7 @@ Lang::choice('messages.apples', 10);
 trans('messages.welcome');
                 </pre>
 
-                <h4><a name="files" href="#files">Files</a> <a href="http://laravel.com/api/class-Illuminate.Filesystem.Filesystem.html" title="Filesystem @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="files" href="#files">Files</a> <a href="http://laravel.com/api/5.0/Illuminate/Filesystem/Filesystem.html" title="Filesystem @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <pre class="prettyprint lang-php">File::exists('path');
 File::get('path');
 File::getRemote('path');
@@ -1282,7 +1519,6 @@ str_finish('foo/bar', '/');
 str_is('foo*', 'foobar');
 str_plural('car');
 str_random(25);
-str_limit($value, $limit = 100, $end = '...')
 str_singular('cars');
 // Result: FooBar
 studly_case('foo_bar');
@@ -1311,7 +1547,7 @@ value(function(){ return 'bar'; });
 with(new Foo)->chainedMethod();
                 </pre>
 
-                <h4><a name="unittest" href="#unittest">Unit testing</a> <a href="http://laravel.com/docs/unittest" title="Unit testing @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
+                <h4><a name="unittest" href="#unittest">Unit testing</a> <a href="http://laravel.com/docs/testing" title="Unit testing @ Laravel Docs"><i class="icon-file-text"></i></a></h4>
                 <h6>Install and run</h6>
                 <pre class="prettyprint lang-php">// add to composer and update:
 "phpunit/phpunit": "4.0.*"
@@ -1354,7 +1590,7 @@ $this->seed($connection);
 SSH::into($remote)->run(array $commands); // specify remote, otherwise assumes default
 SSH::run(array $commands, function($line)
 {
-	echo $line.PHP_EOL;
+    echo $line.PHP_EOL;
 });
                 </pre>
 
@@ -1362,36 +1598,13 @@ SSH::run(array $commands, function($line)
                 <pre class="prettyprint lang-php">SSH::define($taskName, array $commands); // define
 SSH::task($taskName, function($line) // execute
 {
-	echo $line.PHP_EOL;
+    echo $line.PHP_EOL;
 });
                 </pre>
 
                 <h6>SFTP Uploads</h6>
                 <pre class="prettyprint lang-php">SSH::put($localFile, $remotePath);
 SSH::putString($string, $remotePath);
-                </pre>
-
-                <h6>Filesystem/Cloud Storage</h6>
-                <pre class="prettyprint lang-php">
-Storage::disk('s3');
-Storage::disk('local')->put('file.txt', 'Contents');
-Storage::disk('local')->get('file.jpg');
-Storage::disk('s3')->exists('file.jpg');
-Storage::get('file.jpg');
-Storage::put('file.jpg', $contents);
-Storage::size('file1.jpg');
-Storage::lastModified('file1.jpg');
-Storage::copy('old/file1.jpg', 'new/file1.jpg');
-Storage::move('old/file1.jpg', 'new/file1.jpg');
-Storage::prepend('file.log', 'Prepended Text');
-Storage::append('file.log', 'Appended Text');
-Storage::delete(['file1.jpg', 'file2.jpg']);
-Storage::files($directory);
-Storage::allFiles($directory);
-Storage::directories($directory);
-Storage::allDirectories($directory);
-Storage::makeDirectory($directory);
-Storage::deleteDirectory($directory);
                 </pre>
             </div>
 
